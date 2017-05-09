@@ -12,8 +12,8 @@ NSO_SERVER = '192.168.23.2'
 NSO_API_USERNAME = 'admin'
 NSO_API_PASSWORD = 'admin'
 
-VNFR_PATH = '/root/demo/nso/vnfr/'
-VNFD_PATH = '/root/demo/nso/vnfd/'
+VNFR_PATH = 'your_dir/templates/vnfr/'
+VNFD_PATH = 'your_dir/templates/vnfd/'
 
 class Nso():
 
@@ -105,4 +105,3 @@ class Nso():
         return self.nso_handler.delete_path(DatastoreType.RUNNING,
                                             ('nfvo', 'vnfd', vnfd_name),
                                             header='Accept')
-
