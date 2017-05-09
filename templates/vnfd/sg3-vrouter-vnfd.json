@@ -1,0 +1,77 @@
+{
+      "vnfd": {
+          "id": "sg3-vrouter-vnfd",
+          "name": "CSR1000v",
+          "provider": "Cisco",
+          "version": "1.0",
+          "description": "Cloud Router",
+          "vdu": [
+            {
+              "id": "CSR",
+              "internal-connection-point": [
+                {
+                  "id": "left-int",
+                  "external-connection-point": "left-ext",
+                  "tailf-nfvo-esc:interface-id": 1
+                },
+                {
+                  "id": "mgmt-int",
+                  "external-connection-point": "mgmt-ext",
+                  "tailf-nfvo-esc:interface-id": 0
+                },
+                {
+                  "id": "right-int",
+                  "external-connection-point": "right-ext",
+                  "tailf-nfvo-esc:interface-id": 2
+                }
+              ],
+              "tailf-nfvo-esc:device-type": {
+                "cli": {
+                  "ned-id": "ios-id:cisco-ios"
+                }
+              },
+              "tailf-nfvo-esc:day0": [
+                {
+                  "destination": "iosxe_config.txt"
+                }
+              ]
+            }
+          ],
+          "external-connection-point": [
+            {
+              "id": "left-ext"
+            },
+            {
+              "id": "mgmt-ext"
+            },
+            {
+              "id": "right-ext"
+            }
+          ],
+          "deployment-flavor": [
+            {
+              "id": "basic",
+              "vdu-profile": [
+                {
+                  "vdu": "CSR",
+                  "min-number-of-instances": 1,
+                  "max-number-of-instances": 1
+                }
+              ],
+              "instantiation-level": [
+                {
+                  "id": "basic",
+                  "vdu-level": [
+                    {
+                      "vdu": "CSR",
+                      "number-of-instances": 1
+                    }
+                  ]
+                }
+              ],
+              "default-instantiation-level": "basic"
+            }
+          ]
+        }
+    }
+

@@ -1,0 +1,83 @@
+{
+    "vnf-deployment": {
+        "tenant": "esc23-demo",
+        "deployment-name": "sg_vrouter",
+        "esc": "esc23",
+        "username": "admin",
+        "vnfr": [
+          {
+            "id": "vrouter-vnfd",
+            "vnfd-flavor": "basic",
+            "instantiation-level": "basic",
+            "vdu": [
+              {
+                "id": "CSR",
+                "managed": [],
+                "image-name": "csr1000v",
+                "flavor-name": "csr.medium",
+                "bootup-time": 600,
+                "recovery-wait-time": 15,
+                "day0": [
+                  {
+                    "destination": "iosxe_config.txt",
+                    "url": "http://192.168.24.21:18085/deployments/nso-service-vrouter/vrouter.cfg",
+                    "variable": [
+                      {
+                        "name": "DNS_SERVER",
+                        "value": ["144.254.71.184"]
+                      }
+                    ]
+                  }
+                ],
+                "authgroup": "CSR",
+                "esc-device-template": [
+                  {
+                    "name": "Placement_Zone",
+                    "variable": [
+                      {
+                        "name": "DEPLOYMENT_TYPE",
+                        "value": "sg_vrouter"
+                      },
+                      {
+                        "name": "PLACEMENT_ENFORCEMENT",
+                        "value": "strict"
+                      },
+                      {
+                        "name": "PLACEMENT_TYPE",
+                        "value": "zone_host"
+                      },
+                      {
+                        "name": "PLACEMENT_ZONE",
+                        "value": "nova"
+                      },
+                      {
+                        "name": "TENANT",
+                        "value": "esc23-demo"
+                      },
+                      {
+                        "name": "VDU",
+                        "value": "CSR"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "vnfd-connection-point": [
+              {
+                "id": "left-ext",
+                "vlr": "orch-inside-net-0"
+              },
+              {
+                "id": "mgmt-ext",
+                "vlr": "os-management-net-0"
+              },
+              {
+                "id": "right-ext",
+                "vlr": "orch-outside-net-0"
+              }
+            ]
+          }
+        ]
+        }
+      }
